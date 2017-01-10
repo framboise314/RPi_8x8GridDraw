@@ -407,9 +407,9 @@ def importAni():
 	file.close()
 	#drawEverything()
 
-exportAniButton = Button('Export vers py', action=exportAni,  pos=(10, 460), color=(153,0,0))
+exportAniButton = Button('Export vers py', action=exportAni, size=(110,30), pos=(10, 460), color=(153,0,0))
 buttons.append(exportAniButton)
-importAniButton = Button('Import de fichier', action=importAni,  pos=(10, 495), color=(153,0,0))
+importAniButton = Button('Import de fichier', action=importAni, size=(110,30), pos=(10, 495), color=(153,0,0))
 buttons.append(importAniButton)
 
 exportConsButton = Button('Export vers console', action=exportCons, pos=(120, 460), color=(160,160,160))
@@ -424,10 +424,10 @@ buttons.append(clearButton)
 
 FasterButton = Button('+', action=faster, size=(45,25), pos=(360, 460), color=(184,138,0))
 buttons.append(FasterButton)
-SlowerButton = Button('-', action=slower, size=(45,25), pos=(405, 460), color=(184,138,0))
+SlowerButton = Button('-', action=slower, size=(45,25), pos=(415, 460), color=(184,138,0))
 buttons.append(SlowerButton)
 
-PlayButton = Button('Joue sur LED', action=play,  pos=(340, 495), color=(184,138,0))
+PlayButton = Button('Joue sur LED', action=play,  pos=(360, 495), color=(184,138,0))
 buttons.append(PlayButton)
 
 RedButton = Button('Rouge', action=setColourRed, size=(50,30), pos=(445, 10),hilight=(0, 200, 200),color=(255,0,0))
