@@ -312,7 +312,7 @@ def exportAni():
 
 	global saved
 	FILE=open('animation8x8.py','wb')
-	FILE.write('from astro_pi import AstroPi\n')
+	FILE.write('from sense_hat import SenseHat\n')
 	FILE.write('import time\n')
 	FILE.write('ap=SenseHat()\n')
 	FILE.write('FRAMES = [\n')
