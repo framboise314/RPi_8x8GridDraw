@@ -6,7 +6,7 @@ from pygame.locals import *
 from led import LED
 from buttons import Button
 import png # pypng
-from astro_pi import AstroPi
+from sense_hat import SenseHat
 import copy, time
 
 saved = True
@@ -16,13 +16,13 @@ pygame.font.init()
 
 ap=AstroPi()
 screen = pygame.display.set_mode((500, 530), 0, 32)
-pygame.display.set_caption('Astro Pi Grid editor')
+pygame.display.set_caption('Editeur SenseHat')
 pygame.mouse.set_visible(1)
 
 background = pygame.Surface(screen.get_size())
 background = background.convert()
 background.fill((0, 51, 25))
-colour = (255,0,0) # Set default colour to red
+colour = (255,0,0) # Mettre le rouge comme couleur par défaut
 rotation = 0
 frame_number  = 1
 fps = 4
@@ -65,12 +65,12 @@ def setColourCyan():
 	global colour 
 	colour = (0,255,255)
 
-def clearGrid(): # Clears the pygame LED grid and sets all the leds.lit back to False
+def clearGrid(): # Efface la grille de LED pygame et met tous les leds.lit sur False
 	
 	for led in leds:
 		led.lit = False
 
-def buildGrid(): # Takes a grid and builds versions for exporting (png and text)
+def buildGrid(): # Capture une grille et prepare une version pour l exporter (png and text)
 
 	e = [0,0,0]
 	e_png = (0,0,0)
@@ -104,11 +104,11 @@ def buildGrid(): # Takes a grid and builds versions for exporting (png and text)
 				png_grid[led.pos[0]] = png_grid[led.pos[0]] + (0,0,0)
 	return (grid, png_grid)
 
-def piLoad(): # Loads image onto AstroPi matrix
+def piLoad(): # Charge une image sur la matrice de la SenseHat
 	grid, grid_png = buildGrid()
 	ap.set_pixels(grid)
 
-def exportGrid(): # Writes png to file
+def exportGrid(): # Ecrit un png dans un fichier
 
 	global saved
 	grid, png_grid = buildGrid()
@@ -118,13 +118,13 @@ def exportGrid(): # Writes png to file
 	FILE.close()
 	saved = True
 
-def exportCons(): # Writes raw list to console
+def exportCons(): # Ecrit une liste brute sur la console
 
 	grid, png_grid = buildGrid()
 	print(grid)
 
 
-def rotate(): #Rotates image on AstroPi LED matrix
+def rotate(): # Tourne l image sur la matrice de la SenseHat
 	global rotation
 	if rotation == 270:
 		rotation = 0
@@ -154,14 +154,14 @@ def handleClick():
 				butt.click()
 				
  
-def findLED(clicked_pos, leds): # reads leds and checks if clicked position is in one of them
+def findLED(clicked_pos, leds): # Lit les leds et verifie si la position cliquee en fait partie
 	
 	x = clicked_pos[0]
 	y = clicked_pos[1]
 	for led in leds:
 		if math.hypot(led.pos_x - x, led.pos_y - y) <= led.radius:
 			return led
-			#print 'hit led'
+			#print 'led cliquee'
 	return None
 
 
@@ -263,7 +263,7 @@ def getLitLEDs():
 			points.append(led.pos)
 	return points
 
-# Main program body - set up leds and buttons
+# Programme principal - configure les leds et les boutons
 
 leds = []
 for x in range(0, 8):
@@ -405,19 +405,19 @@ def importAni():
 	file.close()
 	#drawEverything()
 
-exportAniButton = Button('Export to py', action=exportAni,  pos=(10, 460), color=(153,0,0))
+exportAniButton = Button('Export vers py', action=exportAni,  pos=(10, 460), color=(153,0,0))
 buttons.append(exportAniButton)
-importAniButton = Button('Import from file', action=importAni,  pos=(10, 495), color=(153,0,0))
+importAniButton = Button('Import de fichier', action=importAni,  pos=(10, 495), color=(153,0,0))
 buttons.append(importAniButton)
 
-exportConsButton = Button('Export to console', action=exportCons, pos=(120, 460), color=(160,160,160))
+exportConsButton = Button('Export vers console', action=exportCons, pos=(120, 460), color=(160,160,160))
 buttons.append(exportConsButton)
-exportPngButton = Button('Export to PNG', action=exportGrid, pos=(120, 495), color=(160,160,160))
+exportPngButton = Button('Export vers PNG', action=exportGrid, pos=(120, 495), color=(160,160,160))
 buttons.append(exportPngButton)
 
-RotateButton = Button('Rotate LEDs', action=rotate,  pos=(230, 460), color=(205,255,255))
+RotateButton = Button('Rotation LEDs', action=rotate,  pos=(230, 460), color=(205,255,255))
 buttons.append(RotateButton)
-clearButton = Button('Clear Grid', action=clearGrid,  pos=(230, 495), color=(204,255,255))
+clearButton = Button('Efface tout', action=clearGrid,  pos=(230, 495), color=(204,255,255))
 buttons.append(clearButton)
 
 FasterButton = Button('+', action=faster, size=(45,25), pos=(340, 460), color=(184,138,0))
@@ -425,24 +425,24 @@ buttons.append(FasterButton)
 SlowerButton = Button('-', action=slower, size=(45,25), pos=(395, 460), color=(184,138,0))
 buttons.append(SlowerButton)
 
-PlayButton = Button('Play on LEDs', action=play,  pos=(340, 495), color=(184,138,0))
+PlayButton = Button('Joue sur LED', action=play,  pos=(340, 495), color=(184,138,0))
 buttons.append(PlayButton)
 
-RedButton = Button('Red', action=setColourRed, size=(50,30), pos=(445, 10),hilight=(0, 200, 200),color=(255,0,0))
+RedButton = Button('Rouge', action=setColourRed, size=(50,30), pos=(445, 10),hilight=(0, 200, 200),color=(255,0,0))
 buttons.append(RedButton)
-BlueButton = Button('Blue', action=setColourBlue, size=(50,30), pos=(445, 45),hilight=(0, 200, 200),color=(0,0,255))
+BlueButton = Button('Bleu', action=setColourBlue, size=(50,30), pos=(445, 45),hilight=(0, 200, 200),color=(0,0,255))
 buttons.append(BlueButton)
-GreenButton = Button('Green', action=setColourGreen, size=(50,30), pos=(445, 80),hilight=(0, 200, 200),color=(0,255,0))
+GreenButton = Button('vert', action=setColourGreen, size=(50,30), pos=(445, 80),hilight=(0, 200, 200),color=(0,255,0))
 buttons.append(GreenButton)
-PurpleButton = Button('Purple', action=setColourPurple, size=(50,30), pos=(445, 115),hilight=(0, 200, 200),color=(102,0,204))
+PurpleButton = Button('Pourpre', action=setColourPurple, size=(50,30), pos=(445, 115),hilight=(0, 200, 200),color=(102,0,204))
 buttons.append(PurpleButton)
-PinkButton = Button('Pink', action=setColourPink, size=(50,30), pos=(445, 150),hilight=(0, 200, 200),color=(255,0,255))
+PinkButton = Button('Rose', action=setColourPink, size=(50,30), pos=(445, 150),hilight=(0, 200, 200),color=(255,0,255))
 buttons.append(PinkButton)
 OrangeButton = Button('Orange', action=setColourOrange, size=(50,30), pos=(445, 185),hilight=(0, 200, 200),color=(255,128,0))
 buttons.append(OrangeButton)
-YellowButton = Button('yellow', action=setColourYellow, size=(50,30), pos=(445, 220),hilight=(0, 200, 200),color=(255,255,0))
+YellowButton = Button('Jaune', action=setColourYellow, size=(50,30), pos=(445, 220),hilight=(0, 200, 200),color=(255,255,0))
 buttons.append(YellowButton)
-WhiteButton = Button('white', action=setColourWhite, size=(50,30), pos=(445, 255),hilight=(0, 200, 200),color=(255,255,255))
+WhiteButton = Button('Blanc', action=setColourWhite, size=(50,30), pos=(445, 255),hilight=(0, 200, 200),color=(255,255,255))
 buttons.append(WhiteButton)
 CyanButton = Button('Cyan', action=setColourCyan, size=(50,30), pos=(445, 290),hilight=(0, 200, 200),color=(0,255,255))
 buttons.append(CyanButton)
@@ -452,12 +452,12 @@ buttons.append(PrevFrameButton)
 NextFrameButton = Button('->', action=nextFrame, size=(25,25), pos=(472, 385), color=(184,138,0))
 buttons.append(NextFrameButton)
 
-DelFrame = Button('Delete', action=delFrame, size=(50,25), pos=(445, 415), color=(184,138,0))
+DelFrame = Button('Supprime', action=delFrame, size=(50,25), pos=(445, 415), color=(184,138,0))
 buttons.append(DelFrame)
 
-saveButton = Button('Save', action=save_it, size=(60,50), pos=(150, 180),hilight=(200, 0, 0),color=(255,255,0))
+saveButton = Button('Sauve', action=save_it, size=(60,50), pos=(150, 180),hilight=(200, 0, 0),color=(255,255,0))
 buttons_warn.append(saveButton)
-QuitButton = Button('Quit', action=prog_exit, size=(60,50), pos=(260, 180),hilight=(200, 0, 0),color=(255,255,0))
+QuitButton = Button('Quitte', action=prog_exit, size=(60,50), pos=(260, 180),hilight=(200, 0, 0),color=(255,255,0))
 buttons_warn.append(QuitButton)
 
 
@@ -465,7 +465,7 @@ def nosave_warn():
 	global warning
 	warning = True
 	font = pygame.font.Font(None,48)
-	frame_text = 'Unsaved Frames ' 
+	frame_text = 'Images non sauvegardées ' 
 	
 	for d in range(5):
 		text = font.render(frame_text,1,(255,0,0))
