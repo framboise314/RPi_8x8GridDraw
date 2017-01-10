@@ -17,8 +17,8 @@ pygame.init()
 pygame.font.init()
 
 ap=SenseHat()
-screen = pygame.display.set_mode((500, 530), 0, 32)
-pygame.display.set_caption('Editeur SenseHat')
+screen = pygame.display.set_mode((550, 530), 0, 32)
+pygame.display.set_caption('Editeur LED pour SenseHat')
 pygame.mouse.set_visible(1)
 
 background = pygame.Surface(screen.get_size())
@@ -178,17 +178,17 @@ def drawEverything():
 		button.draw(screen)
 	font = pygame.font.Font(None,16)
 	
-	frame_text = 'Frame ' + str(frame_number) 
+	frame_text = 'Trame ' + str(frame_number) 
 	text = font.render(frame_text,1,(255,255,255))
 	screen.blit(text, (445,370))
-	fps_text = 'Frame rate= ' + str(fps) +' fps' 
+	fps_text = 'Féq. Trame= ' + str(fps) +' fps' 
 	text = font.render(fps_text,1,(255,255,255))
 	screen.blit(text, (343,440))
 	font = pygame.font.Font(None,18)
 	export_text = 'Animation'
 	text = font.render(export_text,1,(255,255,255))
 	screen.blit(text, (30,440))
-	export_text = 'Single Frame'
+	export_text = 'Trame unique'
 	text = font.render(export_text,1,(255,255,255))
 	screen.blit(text, (130,440))
 	pygame.draw.circle(screen,colour,(470,345),20,0)
@@ -314,7 +314,7 @@ def exportAni():
 	FILE=open('animation8x8.py','wb')
 	FILE.write('from astro_pi import AstroPi\n')
 	FILE.write('import time\n')
-	FILE.write('ap=AstroPi()\n')
+	FILE.write('ap=SenseHat()\n')
 	FILE.write('FRAMES = [\n')
 	global leds
 	global frame_number
@@ -417,14 +417,14 @@ buttons.append(exportConsButton)
 exportPngButton = Button('Export vers PNG', action=exportGrid, pos=(120, 495), color=(160,160,160))
 buttons.append(exportPngButton)
 
-RotateButton = Button('Rotation LEDs', action=rotate,  pos=(230, 460), color=(205,255,255))
+RotateButton = Button('Rotation LEDs', action=rotate,  pos=(240, 460), color=(205,255,255))
 buttons.append(RotateButton)
-clearButton = Button('Efface tout', action=clearGrid,  pos=(230, 495), color=(204,255,255))
+clearButton = Button('Efface tout', action=clearGrid,  pos=(240, 495), color=(204,255,255))
 buttons.append(clearButton)
 
-FasterButton = Button('+', action=faster, size=(45,25), pos=(340, 460), color=(184,138,0))
+FasterButton = Button('+', action=faster, size=(45,25), pos=(360, 460), color=(184,138,0))
 buttons.append(FasterButton)
-SlowerButton = Button('-', action=slower, size=(45,25), pos=(395, 460), color=(184,138,0))
+SlowerButton = Button('-', action=slower, size=(45,25), pos=(405, 460), color=(184,138,0))
 buttons.append(SlowerButton)
 
 PlayButton = Button('Joue sur LED', action=play,  pos=(340, 495), color=(184,138,0))
