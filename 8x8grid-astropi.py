@@ -1,4 +1,6 @@
-# bookmarks http://www.one-tab.com/page/Ds6dSsBoSX24cD8OSxqKcA
+# -*- coding: utf-8 -*-
+# forked from astro-pi/RPi_8x8GridDraw
+# traduction française framboise314.fr
 import pygame
 import sys
 import math
@@ -70,7 +72,7 @@ def clearGrid(): # Efface la grille de LED pygame et met tous les leds.lit sur F
 	for led in leds:
 		led.lit = False
 
-def buildGrid(): # Capture une grille et prepare une version pour l exporter (png and text)
+def buildGrid(): # Capture une grille et prépare une version pour l'exporter (png and text)
 
 	e = [0,0,0]
 	e_png = (0,0,0)
@@ -124,7 +126,7 @@ def exportCons(): # Ecrit une liste brute sur la console
 	print(grid)
 
 
-def rotate(): # Tourne l image sur la matrice de la SenseHat
+def rotate(): # Tourne l'image sur la matrice de la SenseHat
 	global rotation
 	if rotation == 270:
 		rotation = 0
@@ -154,14 +156,14 @@ def handleClick():
 				butt.click()
 				
  
-def findLED(clicked_pos, leds): # Lit les leds et verifie si la position cliquee en fait partie
+def findLED(clicked_pos, leds): # Lit les leds et vérifie si la position cliquée en fait partie
 	
 	x = clicked_pos[0]
 	y = clicked_pos[1]
 	for led in leds:
 		if math.hypot(led.pos_x - x, led.pos_y - y) <= led.radius:
 			return led
-			#print 'led cliquee'
+			#print 'led cliquée'
 	return None
 
 
