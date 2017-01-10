@@ -17,7 +17,7 @@ pygame.init()
 pygame.font.init()
 
 ap=SenseHat()
-screen = pygame.display.set_mode((550, 530), 0, 32)
+screen = pygame.display.set_mode((5200, 530), 0, 32)
 pygame.display.set_caption('Editeur LED pour SenseHat')
 pygame.mouse.set_visible(1)
 
@@ -424,7 +424,7 @@ buttons.append(clearButton)
 
 FasterButton = Button('+', action=faster, size=(45,25), pos=(395, 460), color=(184,138,0))
 buttons.append(FasterButton)
-SlowerButton = Button('-', action=slower, size=(45,25), pos=(445, 460), color=(184,138,0))
+SlowerButton = Button('-', action=slower, size=(45,25), pos=(450, 460), color=(184,138,0))
 buttons.append(SlowerButton)
 
 PlayButton = Button('Joue sur LED', action=play,  pos=(395, 495), color=(184,138,0))
