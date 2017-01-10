@@ -407,27 +407,27 @@ def importAni():
 	file.close()
 	#drawEverything()
 
-exportAniButton = Button('Export vers py', action=exportAni, size=(110,30), pos=(10, 460), color=(153,0,0))
+exportAniButton = Button('Export vers py', action=exportAni, size=(115,30), pos=(10, 460), color=(153,0,0))
 buttons.append(exportAniButton)
-importAniButton = Button('Import de fichier', action=importAni, size=(110,30), pos=(10, 495), color=(153,0,0))
+importAniButton = Button('Import de fichier', action=importAni, size=(115,30), pos=(10, 495), color=(153,0,0))
 buttons.append(importAniButton)
 
-exportConsButton = Button('Export vers console', action=exportCons, size=(110,30), pos=(130, 460), color=(160,160,160))
+exportConsButton = Button('Export vers console', action=exportCons, size=(135,30), pos=(130, 460), color=(160,160,160))
 buttons.append(exportConsButton)
-exportPngButton = Button('Export vers PNG', action=exportGrid, size=(110,30), pos=(130, 495), color=(160,160,160))
+exportPngButton = Button('Export vers PNG', action=exportGrid, size=(135,30), pos=(130, 495), color=(160,160,160))
 buttons.append(exportPngButton)
 
-RotateButton = Button('Rotation LEDs', action=rotate,  size=(110,30), pos=(250, 460), color=(205,255,255))
+RotateButton = Button('Rotation LEDs', action=rotate,  size=(110,30), pos=(275, 460), color=(205,255,255))
 buttons.append(RotateButton)
-clearButton = Button('Efface tout', action=clearGrid,  size=(110,30), pos=(250, 495), color=(204,255,255))
+clearButton = Button('Efface tout', action=clearGrid,  size=(110,30), pos=(275, 495), color=(204,255,255))
 buttons.append(clearButton)
 
-FasterButton = Button('+', action=faster, size=(45,25), pos=(370, 460), color=(184,138,0))
+FasterButton = Button('+', action=faster, size=(45,25), pos=(395, 460), color=(184,138,0))
 buttons.append(FasterButton)
-SlowerButton = Button('-', action=slower, size=(45,25), pos=(425, 460), color=(184,138,0))
+SlowerButton = Button('-', action=slower, size=(45,25), pos=(445, 460), color=(184,138,0))
 buttons.append(SlowerButton)
 
-PlayButton = Button('Joue sur LED', action=play,  pos=(370, 495), color=(184,138,0))
+PlayButton = Button('Joue sur LED', action=play,  pos=(395, 495), color=(184,138,0))
 buttons.append(PlayButton)
 
 RedButton = Button('Rouge', action=setColourRed, size=(60,30), pos=(445, 10),hilight=(0, 200, 200),color=(255,0,0))
