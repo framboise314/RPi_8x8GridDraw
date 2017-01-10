@@ -16,7 +16,7 @@ warning = False
 pygame.init()
 pygame.font.init()
 
-ap=AstroPi()
+ap=SenseHat()
 screen = pygame.display.set_mode((500, 530), 0, 32)
 pygame.display.set_caption('Editeur SenseHat')
 pygame.mouse.set_visible(1)
