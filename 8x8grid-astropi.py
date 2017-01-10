@@ -17,7 +17,7 @@ pygame.init()
 pygame.font.init()
 
 ap=SenseHat()
-screen = pygame.display.set_mode((5200, 530), 0, 32)
+screen = pygame.display.set_mode((520, 530), 0, 32)
 pygame.display.set_caption('Editeur LED pour SenseHat')
 pygame.mouse.set_visible(1)
 
@@ -190,7 +190,7 @@ def drawEverything():
 	screen.blit(text, (30,440))
 	export_text = 'Trame unique'
 	text = font.render(export_text,1,(255,255,255))
-	screen.blit(text, (130,440))
+	screen.blit(text, (160,440))
 	pygame.draw.circle(screen,colour,(470,345),20,0)
 	#flip the screen
 	if warning:
